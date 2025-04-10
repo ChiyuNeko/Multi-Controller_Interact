@@ -54,10 +54,10 @@ public class TrajectorySimulation : MonoBehaviour
                 // flip the velocity to simulate a bounce
                 segVelocity = Vector3.zero;
 
-                if(_hitObject.gameObject.tag == "Plane" && OVRInput.GetDown(DesroyBtn))
+                if(_hitObject.gameObject.tag == "Plane" && _hitObject.gameObject)
                 {
-                    gameObjectManager.DestroyObject(_hitObject.gameObject);
                     //Destroy(_hitObject.gameObject);
+                    gameObjectManager.DestroyObject(_hitObject.gameObject);
                 }
                 /*
                 * Here you could check if the object hit by the Raycast had some property – was

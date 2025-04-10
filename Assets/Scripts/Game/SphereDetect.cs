@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SphereDetect : MonoBehaviour
 {
     public GameObjectManager gameObjectManager;
+    public string TagName;
+    public bool  isTriggered;
     void Start()
     {
         
@@ -15,11 +19,11 @@ public class SphereDetect : MonoBehaviour
     {
         
     }
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Controller")
+        if (other.gameObject.tag == TagName)
         {
-            gameObjectManager.DestroyObject(gameObject);
+            gameObjectManager.DestroyObject(this.gameObject);
         }
     }
 

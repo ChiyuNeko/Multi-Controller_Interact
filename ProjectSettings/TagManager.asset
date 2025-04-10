@@ -9,6 +9,7 @@ TagManager:
   - Sphere
   - Ground
   - Controller
+  - Pointer
   layers:
   - Default
   - TransparentFX
