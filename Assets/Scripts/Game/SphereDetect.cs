@@ -9,6 +9,7 @@ public class SphereDetect : MonoBehaviour
     public GameObjectManager gameObjectManager;
     public string TagName;
     public bool  isTriggered;
+    public CylinderShink cylinderShink;
     void Start()
     {
         
@@ -23,7 +24,7 @@ public class SphereDetect : MonoBehaviour
     {
         if (other.gameObject.tag == TagName)
         {
-            gameObjectManager.DestroyObject(this.gameObject);
+            cylinderShink.DestroyObject(this.gameObject);
         }
     }
 

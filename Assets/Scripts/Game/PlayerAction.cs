@@ -16,7 +16,7 @@ public class PlayerAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        LasersSwitch();
+        //LasersSwitch();
     }
     public void LasersSwitch()
     {

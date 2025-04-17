@@ -14,6 +14,8 @@ public class GameObjectManager : MonoBehaviour
     public float Scale;
     public Vector3 Offset;
     public float RandomOffset;
+    public OVRInput.Button TriggerButton;
+    public bool IsSphere = false;
     public float ShinkSpeed;
     public float DisspearScale;
     public bool OnGround;
@@ -43,6 +45,7 @@ public class GameObjectManager : MonoBehaviour
             {
                 for(int j = 0; j < GenerateZone.x; j++)
                 {
+
                     RamdomPoint = new Vector3( Random.Range(-RandomOffset, RandomOffset), 0, Random.Range(-RandomOffset, RandomOffset));
                     GameObject gameObject = Instantiate(ObjectsPrefabs[Random.Range(0, ObjectsPrefabs.Count)], GeneratePoint + RamdomPoint, Quaternion.identity, this.transform);
                     gameObject.transform.localScale = Vector3.one * Scale;
@@ -69,7 +72,10 @@ public class GameObjectManager : MonoBehaviour
     }
     public void DestroyObject(GameObject gameObject)
     {
-        gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, Vector3.zero, 1/ShinkSpeed);
+        if(OVRInput.GetDown(TriggerButton) || IsSphere)
+        {
+            gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, Vector3.zero, 1/ShinkSpeed);
+        }
         if(gameObject.transform.localScale.x <= DisspearScale)
         {
             AllObjects.Remove(gameObject);
@@ -120,6 +126,7 @@ public class GameObjectManager : MonoBehaviour
                 }
             }
         }
+        gameManager.Score ++;
         gameManager.UpdateUI();
     }
     

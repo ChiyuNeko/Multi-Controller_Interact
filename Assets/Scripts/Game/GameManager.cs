@@ -11,13 +11,14 @@ public class GameManager : MonoBehaviour
     public Text CylinderText;
     public Text PlaneText;
     public Text SphereText;
-    int AllObjectCounts;
+    public int Score;
     int CylinderCounts;
     int PlaneCounts;
     int SphereCounts;
 
     void Start()
     {
+        Score = 0;
 
     }
     void Update()
@@ -27,15 +28,13 @@ public class GameManager : MonoBehaviour
     }
     public void UpdateUI()
     {
-        AllObjectCounts = 0;
-        for (int i = 0; i < gameObjectGeneraters.Count; i++)
-            AllObjectCounts += gameObjectGeneraters[i].Generater.AllObjects.Count;
+        
 
         CylinderCounts = gameObjectGeneraters[0].Generater.AllObjects.Count;
         PlaneCounts = gameObjectGeneraters[1].Generater.AllObjects.Count;
         SphereCounts  = gameObjectGeneraters[2].Generater.AllObjects.Count;
 
-        AllObjectText.text = "All Objects Count: " + AllObjectCounts;
+        AllObjectText.text = "Score: " + Score;
         CylinderText.text = "Green Count: " + CylinderCounts;
         PlaneText.text = "Yellow Count: " + PlaneCounts;
         SphereText.text = "Red Count: " + SphereCounts;

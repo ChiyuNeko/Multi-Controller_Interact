@@ -4,7 +4,9 @@ using UnityEngine;
 /// </summary>
 public class TrajectorySimulation : MonoBehaviour
 {
+    public OVRInput.Button TriggerButton;
     public GameObjectManager gameObjectManager;
+    public CylinderShink cylinderShink;
     public OVRInput.Button DesroyBtn;
     // Reference to the LineRenderer we will use to display the simulated path
     public LineRenderer sightLine;
@@ -54,10 +56,10 @@ public class TrajectorySimulation : MonoBehaviour
                 // flip the velocity to simulate a bounce
                 segVelocity = Vector3.zero;
 
-                if(_hitObject.gameObject.tag == "Plane" && _hitObject.gameObject)
+                if(_hitObject.gameObject.tag == "Plane" && _hitObject.gameObject && OVRInput.GetDown(TriggerButton))
                 {
                     //Destroy(_hitObject.gameObject);
-                    gameObjectManager.DestroyObject(_hitObject.gameObject);
+                    _hitObject.gameObject.GetComponent<CylinderShink>().IsShink = true;
                 }
                 /*
                 * Here you could check if the object hit by the Raycast had some property – was
