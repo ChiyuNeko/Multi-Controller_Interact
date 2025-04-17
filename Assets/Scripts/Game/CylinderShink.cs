@@ -28,14 +28,19 @@ public class CylinderShink : MonoBehaviour
         {
             Shink();
         }
+        // if(OVRInput.GetDown(TriggerButton))
+        // {  
+        //     Debug.Log("111111111111111111111111111111111111111111111111111111111111111");
+        // }
     }
     public void DestroyObject(GameObject gameObject)
     {
         if(OVRInput.GetDown(TriggerButton) || IsSphere)
         {
             gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, Vector3.zero, 1/gameObjectManager.ShinkSpeed);
-        if(!IsShink)
-            IsShink = true;
+            if(!IsShink)
+                IsShink = true;
+            Debug.Log("111111111111111111111111111111111111111111111111111111111111111");
         }
     }
 
@@ -49,16 +54,16 @@ public class CylinderShink : MonoBehaviour
             gameObjectManager.ReGenerateObjects();
         }
     }
-    public void Shink(GameObject gameObject)
-    {
-        gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, Vector3.zero, 1/gameObjectManager.ShinkSpeed);
-        if(gameObject.transform.localScale.x <= gameObjectManager.DisspearScale)
-        {
-            gameObjectManager.AllObjects.Remove(gameObject);
-            Destroy(gameObject);
-            gameObjectManager.ReGenerateObjects();
-        }
-    }
+    // public void Shink(GameObject gameObject)
+    // {
+    //     gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, Vector3.zero, 1/gameObjectManager.ShinkSpeed);
+    //     if(gameObject.transform.localScale.x <= gameObjectManager.DisspearScale)
+    //     {
+    //         gameObjectManager.AllObjects.Remove(gameObject);
+    //         Destroy(gameObject);
+    //         gameObjectManager.ReGenerateObjects();
+    //     }
+    // }
     public void ScaleRecover()
     {
         gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, Vector3.one * gameObjectManager.Scale, 1 / gameObjectManager.ShinkSpeed / 10);
