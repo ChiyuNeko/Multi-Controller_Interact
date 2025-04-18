@@ -47,10 +47,13 @@ public class GameObjectManager : MonoBehaviour
                 {
 
                     RamdomPoint = new Vector3( Random.Range(-RandomOffset, RandomOffset), 0, Random.Range(-RandomOffset, RandomOffset));
-                    GameObject gameObject = Instantiate(ObjectsPrefabs[Random.Range(0, ObjectsPrefabs.Count)], GeneratePoint + RamdomPoint, Quaternion.identity, this.transform);
-                    gameObject.transform.localScale = Vector3.one * Scale;
-                    AllObjects.Add(gameObject);
-                    GeneratePoint.x += Distence.x;
+                    if(AllObjects.Count < 2)
+                    {
+                        GameObject gameObject = Instantiate(ObjectsPrefabs[Random.Range(0, ObjectsPrefabs.Count)], GeneratePoint + RamdomPoint, Quaternion.identity, this.transform);
+                        gameObject.transform.localScale = Vector3.one * Scale;
+                        AllObjects.Add(gameObject);
+                        GeneratePoint.x += Distence.x;
+                    }
 
                     if(OnGround == true)
                     {  

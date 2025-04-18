@@ -17,6 +17,7 @@ public class DestroyZone : MonoBehaviour
         if(gameObject.transform.position.y > DeadZone.position.y)
         {
             gameObjectManager.AllObjects.Remove(gameObject);
+            gameObjectManager.ReGenerateObjects();
             Destroy(gameObject);
         }
         
