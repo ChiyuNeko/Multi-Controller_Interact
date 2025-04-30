@@ -10,14 +10,14 @@ public class CylinderShink : MonoBehaviour
     public bool IsShink = false;
     void Start()
     {
-        if(gameObject.tag == "Plane")
-        {
-            TriggerButton = OVRInput.Button.PrimaryIndexTrigger;
-        }
-        if(gameObject.tag == "Cylinder")
-        {
-            TriggerButton = OVRInput.Button.SecondaryIndexTrigger;
-        }
+        // if(gameObject.tag == "Plane")
+        // {
+        //     TriggerButton = OVRInput.Button.PrimaryIndexTrigger;
+        // }
+        // if(gameObject.tag == "Cylinder")
+        // {
+        //     TriggerButton = OVRInput.Button.SecondaryIndexTrigger;
+        // }
     }
 
     // Update is called once per frame

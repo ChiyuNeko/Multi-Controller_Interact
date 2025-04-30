@@ -53,6 +53,7 @@ public class GameObjectManager : MonoBehaviour
                         gameObject.transform.localScale = Vector3.one * Scale;
                         AllObjects.Add(gameObject);
                         GeneratePoint.x += Distence.x;
+                        gameObject.SetActive(true);
                     }
 
                     if(OnGround == true)
@@ -108,29 +109,36 @@ public class GameObjectManager : MonoBehaviour
         GameObject gameObject = Instantiate(objectsPrefabs[Random.Range(0, objectsPrefabs.Count)], GeneratePoint + RamdomPoint, Quaternion.identity, generater.GeneraterPosition);
         generater.AllObjects.Add(gameObject);
         gameObject.transform.localScale = Vector3.one * generater.Scale;
+        gameObject.SetActive(true);
         
-        if(generater.OnGround == true)
-        {
-            while (!IsHit)
-            { 
-                RaycastHit hit;
-                if (Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
-                {
-                    if(hit.transform.tag == "Ground")
-                    {
-                        gameObject.transform.position = hit.point + generater.Offset;
-                        IsHit = true;
-                    }
-                    else
-                    {
-                        gameObject.transform.position += Vector3.left;
+        // if(generater.OnGround == true)
+        // {
+        //     while (!IsHit)
+        //     { 
+        //         RaycastHit hit;
+        //         if (Physics.Raycast(gameObject.transform.position, gameObject.transform.TransformDirection(Vector3.down), out hit, Mathf.Infinity))
+        //         {
+        //             if(hit.transform.tag == "Ground")
+        //             {
+        //                 gameObject.transform.position = hit.point + generater.Offset;
+        //                 IsHit = true;
+        //             }
+        //             else
+        //             {
+        //                 gameObject.transform.position += Vector3.left;
 
-                    }
-                }
-            }
-        }
+        //             }
+        //         }
+        //     }
+        // }
         gameManager.Score ++;
         gameManager.UpdateUI();
+    }
+
+    public void   OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(this.gameObject.transform.position + new Vector3(GenerateZone.x * Distence.x,GenerateZone.y * Distence.y, GenerateZone.z * Distence.z)/2, new Vector3(GenerateZone.x * Distence.x,GenerateZone.y * Distence.y, GenerateZone.z * Distence.z));
     }
     
   
